@@ -38,6 +38,32 @@
     });
 
 
+    // 登录拦截功能，登录页面不需要校验，不用登录就能访问
+    // 前后端分离，前端是不知道该用户是否登录了，但是后台知道，
+    // 发送 ajax 请求， 查询用户状态即可
+    // (1) 用户已登录，啥都不用做，让用户继续访问
+    // (2)用户未登录，拦截到登录页
+    if( location.href.indexOf("login.html") === -1){
+      // 地址栏中没有 login.html, 说明不是登录页，需要进行登录拦截
+      $.ajax({
+        type:"get",
+        url:"/employee/checkRootLogin",
+        dataType:"json",
+        success:function( info ){
+          console.log(info);
+          if( info.success ){
+            // 已登录，让用户继续访问
+            console.log("用户已登录");
+          }
+          if( info.error === 400){
+            // 未登录。拦截到登录页
+            location.href = "login.html";
+          }
+        }
+      });
+    }
+
+
     // 首页
     $(function(){
       // 1.分类管理的切换功能
