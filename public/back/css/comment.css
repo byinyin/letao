@@ -134,3 +134,9 @@ ul{
   height:400px;
 }
 
+/* user */
+.lt_content .table th,
+.lt_content .table td{
+  text-align: center;
+  vertical-align: middle;
+}
