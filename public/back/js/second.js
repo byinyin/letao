@@ -71,7 +71,7 @@ $(function(){
     $('[name="categoryId"]').val(id);
 
     // 将隐藏域校验状态，设置成校验成功状态
-    // updateStatus(字段名，校验状态，校验规则);
+    // updateStatus(字段名，校验状态，校验规则(可以配置提示信息) );
     $("#form").data('bootstrapValidator').updateStatus('categoryId','VALID');
   });
 
@@ -108,6 +108,8 @@ $(function(){
   // 5.实现表单校验
   $("#form").bootstrapValidator({
     // 1.指定不校验的类型，默认为[':disabled',':hidden',':not(:visible)']
+    // 默认插件不对隐藏域进行校验，现在需要对隐藏域进行校验
+    // 重置排除项
     excluded:[],
      // 配置校验图标
      feedbackIcons: {
